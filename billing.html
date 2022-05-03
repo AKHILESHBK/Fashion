@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width ,initial-scale=1.0">
         <title>checkout- Fashion Factory </title>
-        <link rel="stylesheet" href="style3.css">
+        <link rel="stylesheet" href="css/style3.css">
         <link href="https://fonts.googleapis.com/css2?
         family=poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-75">
       <div class="container">
-        <form action="/action_page.php">
+        <form method="post" autocomplete="off" name="google-sheet">
   
           <div class="row">
             <div class="col-50">
@@ -74,7 +74,7 @@
           <label>
             <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
           </label>
-          <a href="ecom.html" class="btn">Continue for checkout</a>
+          <button class="btn" type="submit">Continue for checkout</button>
           
         </form>
       </div>
@@ -97,5 +97,26 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const scriptURL =
+        'https://script.google.com/macros/s/AKfycbxND_VDi8eLJyXWp7YtDGtRxvVic5oQ_s7DdYq52jYwTUvpfxEalx3_L9dCYx5cqavPqA/exec'
+    const form = document.forms['google-sheet']
+    var headers = {}
+ 
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, {
+                method: 'POST',
+                mode:"no-cors",
+                headers:headers,
+                body: new FormData(form)
+            })
+            .then(response => alert(
+                "Thanks for you valuable feedback!!!"))
+            .catch(error => console.error('Error!', error.message))
+    })
+ 
+ </script>
 </body>
 </html>
